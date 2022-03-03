@@ -21,11 +21,11 @@ class Price
 
   def duration_price
     (0...rental.duration).to_a.inject(0) do |acc, day|
-      acc + car.price_per_day * day_discount(day)
+      acc + car.price_per_day * discount(day)
     end.to_i
   end
 
-  def day_discount(day)
+  def discount(day)
     return 1 if day.zero?
     return 0.9 if day < 4
     return 0.7 if day < 10

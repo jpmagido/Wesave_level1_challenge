@@ -55,12 +55,12 @@ class RentalManager
   end
 
   def pricing_array
-    rentals.inject([]) do |acc, rental|
-      acc.push(
+    rentals.map do |rental|
+      {
         id: rental.id,
         price: compute_price(rental),
         commission: ::Commission.new(rental, compute_price(rental)).compute
-      )
+      }
     end
   end
 
